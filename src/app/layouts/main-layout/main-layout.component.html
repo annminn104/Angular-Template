@@ -1,0 +1,29 @@
+<div class="main-layout">
+  <div class="main-layout_wrapper">
+    <div class="container g-0 main-layout_container">
+      <div class="row g-0">
+        <div class="col-12">
+          <div class="p-2 main-layout_header">
+            <app-header></app-header>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="p-2 main-layout_sideBar">
+            <app-sidebar></app-sidebar>
+          </div>
+        </div>
+        <div class="col-10">
+          <div class="p-2 main-layout_body">
+            <app-breadcrumb></app-breadcrumb>
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-2 main-layout_footer">
+            <app-footer></app-footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+// Bootstrap
+$container-max-widths: (
+  sm: rem(540),
+  md: rem(720),
+  lg: rem(960),
+  xl: rem(1140),
+  xxl: rem(1320),
+);
+
+// Layouts
+$h-header: rem(80);
+$h-footer: rem(60);
+$h-body: calc(100vh - ($h-header + $h-footer));
+
+// Box-shadows
+
+// Others

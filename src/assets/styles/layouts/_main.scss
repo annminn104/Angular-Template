@@ -1,0 +1,31 @@
+.main-layout {
+  &_container {
+    max-width: 100%;
+  }
+
+  &_header {
+    @include adjust-flex();
+    height: $h-header;
+    border: rem(1) solid $black;
+  }
+
+  &_body,
+  &_sideBar {
+    @include adjust-flex(flex-start, flex-start);
+    overflow-x: auto;
+    flex-direction: column;
+    min-height: $h-body;
+    max-height: $h-body;
+    border: rem(1) solid $black;
+  }
+
+  &_body {
+    @include scroll-bars();
+  }
+
+  &_footer {
+    @include adjust-flex();
+    height: $h-footer;
+    border: rem(1) solid $black;
+  }
+}
