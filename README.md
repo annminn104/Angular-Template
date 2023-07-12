@@ -9,7 +9,7 @@ To get started, clone the repository to your local machine and install the depen
 ```
 git clone <repo_url>
 cd <project_name>
-npm install
+yarn
 ```
 
 ## Scripts
@@ -25,6 +25,25 @@ The `package.json` file includes the following scripts:
 - `yarn prepare`: Sets up Husky for Git hooks
 - `yarn changelog`: Generates a changelog based on git commits
 - `yarn changelog:commit`: Generates a changelog and amends the current commit with the new changelog
+
+## Local Testing of Builds
+
+After running the build script, you may want to test the resulting build in a local environment. To do this, you can use a simple, zero-configuration command-line HTTP server, such as `http-server`.
+
+If you haven't installed it yet, you can do so globally by running:
+
+```
+npm install --global http-server
+```
+
+Then, navigate to your build directory and start the server:
+
+```
+cd dist/<project_name>
+http-server
+```
+
+By default, this will start the server on port 8080. You can then navigate to `http://localhost:8080` in your browser to view your application.
 
 ## Project Structure
 
