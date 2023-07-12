@@ -1,0 +1,15 @@
+.app-icons {
+  .icon {
+    &-spinner {
+      transform-origin: center;
+      -webkit-animation: spinner 2s linear infinite;
+      animation: spinner 2s linear infinite;
+
+      circle {
+        stroke-linecap: round;
+        -webkit-animation: spinner_circle 1.5s ease-in-out infinite;
+        animation: spinner_circle 1.5s ease-in-out infinite;
+      }
+    }
+  }
+}

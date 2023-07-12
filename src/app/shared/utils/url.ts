@@ -53,7 +53,6 @@ export class UrlUtils {
    */
   static merge(prefix: string, version: string | undefined, endpoint: string, queryParams: { [key: string]: any } = {}) {
     const array = [prefix, version, endpoint].filter((str) => !!str);
-    console.log(array);
     return `/${array.join('/')}${UrlUtils.query(queryParams)}`;
   }
 }

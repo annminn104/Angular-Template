@@ -9,3 +9,4 @@ import './string';
 import './time';
 import './url';
 import './validator';
+import './helpers';

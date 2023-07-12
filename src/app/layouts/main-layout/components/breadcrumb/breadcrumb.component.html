@@ -1,1 +1,10 @@
-<p>breadcrumb works!</p>
+<div class="main-breadcrumb">
+  <div class="main-breadcrumb_title">
+    <ng-container *ngFor="let bc of breadcrumbs; let i = index">
+      <ng-container *ngIf="i == 0">
+        <app-icons [iconName]="bc.icon || 'ICON_DASHBOARD'" size="28x28" />
+      </ng-container>
+      <a [routerLink]="[bc.url]" routerLinkActive="router-link-active">{{ bc.title }}</a>
+    </ng-container>
+  </div>
+</div>

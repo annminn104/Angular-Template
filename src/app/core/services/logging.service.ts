@@ -10,38 +10,40 @@ import { LOG_CONFIG } from '../tokens/logging';
 export class LoggingService {
   constructor(@Inject(LOG_CONFIG) private logConfig: ILogConfig) {}
 
-  log(msg: string, ...params: any[]): void {
+  log(msg: string, ...params: unknown[]): void {
     this.writeLog(msg, LOG_LEVEL.NONE, params);
   }
 
-  debug(msg: string, ...params: any[]): void {
+  debug(msg: string, ...params: unknown[]): void {
     this.writeLog(msg, LOG_LEVEL.DEBUG, params);
   }
 
-  info(msg: string, ...params: any[]): void {
+  info(msg: string, ...params: unknown[]): void {
     this.writeLog(msg, LOG_LEVEL.INFO, params);
   }
 
-  warn(msg: string, ...params: any[]): void {
+  warn(msg: string, ...params: unknown[]): void {
     this.writeLog(msg, LOG_LEVEL.WARN, params);
   }
 
-  error(msg: string, ...params: any[]): void {
+  error(msg: string, ...params: unknown[]): void {
     this.writeLog(msg, LOG_LEVEL.ERROR, params);
   }
 
-  fatal(msg: string, ...params: any[]): void {
+  fatal(msg: string, ...params: unknown[]): void {
     this.writeLog(msg, LOG_LEVEL.FATAL, params);
   }
 
-  off(msg: string, ...params: any[]): void {
+  off(msg: string, ...params: unknown[]): void {
     this.writeLog(msg, LOG_LEVEL.OFF, params);
   }
 
   writeLog(msg: string, level: LOG_LEVEL, params: Array<any>) {
-    if (Object.values(LOG_LEVEL).includes(level)) {
-      const logEntry = new LogEntry(msg, level, params);
-      console.log('%c' + logEntry.buildLogMessage(), logEntry.logFormat);
+    if (this.logConfig.enable) {
+      if (Object.values(LOG_LEVEL).includes(level)) {
+        const logEntry = new LogEntry(msg, level, params);
+        console.log('%c' + logEntry.buildLogMessage(), logEntry.logFormat);
+      }
     }
   }
 }

@@ -1,4 +1,6 @@
 .main-sideBar {
   &_menu {
+    @include adjust-flex(flex-start, flex-start);
+    flex-direction: column;
   }
 }

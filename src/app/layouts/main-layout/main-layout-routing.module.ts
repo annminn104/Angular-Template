@@ -9,8 +9,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
         loadChildren: () => import('@views/main/main.module').then((m) => m.MainModule),
+        data: {
+          moduleTitle: 'Dashboard',
+        },
       },
     ],
   },

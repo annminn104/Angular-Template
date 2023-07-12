@@ -2,9 +2,16 @@
 <div class="main-sideBar">
   <div class="main-sideBar-content">
     <div class="main-sidebar_logo">LOGO</div>
-    <div class="main-sideBar_menu"></div>
+    <div class="main-sideBar_menu">
+      <a href="{{ item.slug }}" *ngFor="let item of sideBarMenu" class="main-sideBar_item">
+        <app-icons [iconName]="item.icon" size="28x28" />
+        <span class="main-sideBar_item-title">{{ item.title }}</span>
+      </a>
+    </div>
     <div class="main-sideBar-button">
-      <button type="button" class="btn btn-light"></button>
+      <app-button type="button">
+        <app-icons iconName="ICON_ANGLE_DOUBLE_LEFT" />
+      </app-button>
     </div>
   </div>
 </div>

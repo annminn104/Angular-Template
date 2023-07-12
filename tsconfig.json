@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types": ["node"],
     "baseUrl": "./",
     "paths": {
       "@core/*": ["src/app/core/*"],
@@ -15,6 +16,8 @@
       "@assets/*": ["src/assets/*"],
       "@enums/*": ["src/app/enums/*"]
     },
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
