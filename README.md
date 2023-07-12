@@ -6,7 +6,7 @@ This is a comprehensive Angular application which is designed to be scalable, ma
 
 To get started, clone the repository to your local machine and install the dependencies:
 
-```
+```shell
 git clone <repo_url>
 cd <project_name>
 yarn
@@ -32,13 +32,13 @@ After running the build script, you may want to test the resulting build in a lo
 
 If you haven't installed it yet, you can do so globally by running:
 
-```
+```shell
 npm install --global http-server
 ```
 
 Then, navigate to your build directory and start the server:
 
-```
+```shell
 cd dist/<project_name>
 http-server
 ```
@@ -112,3 +112,47 @@ Rebase is a git process that allows you to modify and optimize your commit histo
 ## Contribution
 
 Contributions to this project are welcomed. Please ensure to follow the guidelines when making a commit, husky and commitlint will ensure that all your commits follow the correct pattern. When making a pull request, make sure you have updated the Changelog accordingly.
+
+## Docker Build and Run
+
+**See-more:** <https://docs.docker.com/get-started/overview/>
+
+To build and run the Docker image for each environment, use the following commands:
+
+- For the development environment:
+
+**Case 1:**
+
+```shell
+docker-compose build
+```
+
+**Case 2:**
+
+```shell
+docker build -t my-app-dev -f Dockerfile.dev .
+docker run -p 4200:80 my-app-dev
+```
+
+- For the QC environment:
+
+```shell
+docker build -t my-app-qc -f Dockerfile.qc .
+docker run -p 4201:80 my-app-qc
+```
+
+- For the UAT environment:
+
+```shell
+docker build -t my-app-uat -f Dockerfile.uat .
+docker run -p 4202:80 my-app-uat
+```
+
+- For the production environment:
+
+```shell
+docker build -t my-app-prod -f Dockerfile.prod .
+docker run -p 4203:80 my-app-prod
+```
+
+Remember to replace `my-app-dev`, `my-app-qc`, `my-app-uat`, and `my-app-prod` with the names you want to assign to the Docker image for each environment.

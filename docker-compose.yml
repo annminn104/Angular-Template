@@ -1,0 +1,30 @@
+version: "3.4"
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4200:80"
+
+  qc:
+    build:
+      context: .
+      dockerfile: Dockerfile.qc
+    ports:
+      - "4201:80"
+
+  uat:
+    build:
+      context: .
+      dockerfile: Dockerfile.uat
+    ports:
+      - "4202:80"
+
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "4203:80"
