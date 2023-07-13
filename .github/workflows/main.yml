@@ -1,0 +1,31 @@
+name: Angular CI
+
+on:
+  push:
+    branches: [develop, qc, uat, prod]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Angular Build
+        run: yarn run build
+
+      - name: Docker Build
+        run: docker build -t my-angular-app .
+
+      - name: Docker Push
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
+          docker push my-angular-app
