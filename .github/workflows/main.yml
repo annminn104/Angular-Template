@@ -29,6 +29,7 @@ jobs:
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_HUB_URL: ${{ secrets.DOCKER_HUB_URL}}
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USER --password-stdin
-          docker push my-angular-app
+          docker push $DOCKER_HUB_URL/my-angular-app
