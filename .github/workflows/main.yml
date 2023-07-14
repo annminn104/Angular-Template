@@ -63,7 +63,7 @@ jobs:
           fi
 
       - name: Export Build Artifacts
-        run: docker cp my-angular-app-container:/usr/share/nginx/html ./dist
+        run: docker cp my-angular-app-container:/usr/share/nginx/html ./angular-template
 
       - name: Install Vercel CLI
         run: yarn global add vercel
