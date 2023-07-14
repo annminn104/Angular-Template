@@ -40,36 +40,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
 
-      - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
-
-      - name: Pull and Run Docker Image
+      - name: Deploy
         run: |
-          if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-            docker pull "${{ secrets.DOCKER_USER }}/angular-template:develop"
-            docker run -d --name my-angular-app-container "${{ secrets.DOCKER_USER }}/angular-template:develop"
-          elif [ "${{ github.ref }}" = "refs/heads/qc" ]; then
-            docker pull "${{ secrets.DOCKER_USER }}/angular-template:qc"
-            docker run -d --name my-angular-app-container "${{ secrets.DOCKER_USER }}/angular-template:qc"
-          elif [ "${{ github.ref }}" = "refs/heads/uat" ]; then
-            docker pull "${{ secrets.DOCKER_USER }}/angular-template:uat"
-            docker run -d --name my-angular-app-container "${{ secrets.DOCKER_USER }}/angular-template:uat"
-          elif [ "${{ github.ref }}" = "refs/heads/prod" ]; then
-            docker pull "${{ secrets.DOCKER_USER }}/angular-template:prod"
-            docker run -d --name my-angular-app-container "${{ secrets.DOCKER_USER }}/angular-template:prod"
-          fi
-
-      - name: Export Build Artifacts
-        run: docker cp my-angular-app-container:/usr/share/nginx/html ./angular-template
-
-      - name: Install Vercel CLI
-        run: yarn global add vercel
-
-      - name: Deploy to Vercel
-        run: |
-          if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod
-          fi
+          ssh user@your-server-address 'docker pull "${{ secrets.DOCKER_USER }}"/angular-template:"${GITHUB_REF#refs/heads/}" && docker-compose up -d'

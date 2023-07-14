@@ -1,0 +1,15 @@
+$wsl2_ip = wsl hostname -I | % { $_.Trim() }
+$windows_ip = (Test-Connection -ComputerName (hostname) -Count 1).IPV4Address.IPAddressToString
+$port = 8080
+New-NetFirewallRule -DisplayName "WSL2 Web Server (Port 8080)" -Direction Inbound  -LocalPort $port -Action Allow -Protocol TCP
+netsh interface portproxy add v4tov4 listenport=$port listenaddress=$windows_ip connectport=80 connectaddress=$wsl2_ip
+
+#check
+
+#windows:
+netsh interface portproxy show all
+
+#wsl:
+ip addr show eth0
+
+sudo ss -tuln
