@@ -21,6 +21,9 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy from `builder` (old image) build to nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+# Copy nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80
 EXPOSE 80
 
