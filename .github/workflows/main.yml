@@ -22,6 +22,9 @@ jobs:
       - name: Angular Build
         run: yarn run build
 
+      - name: Make script executable
+        run: chmod +x copy-dist.sh
+
       - name: Docker Build
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
