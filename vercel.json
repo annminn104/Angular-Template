@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "name": "my-app",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/angular-template"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*).js",
+      "headers": { "Cache-Control": "max-age=31536000, immutable" },
+      "dest": "/$1.js"
+    },
+    {
+      "src": "/(.*).css",
+      "headers": { "Cache-Control": "max-age=31536000, immutable" },
+      "dest": "/$1.css"
+    },
+    {
+      "src": "/.*",
+      "dest": "index.html"
+    }
+  ]
+}
