@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "my-app",
+  "name": "angular-template",
   "builds": [
     {
       "src": "package.json",

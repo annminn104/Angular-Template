@@ -71,5 +71,5 @@ jobs:
       - name: Deploy to Vercel
         run: |
           if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --project angular-template
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod angular-template
           fi
