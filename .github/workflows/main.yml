@@ -1,4 +1,4 @@
-name: Angular CI
+name: Angular CI/CD
 
 on:
   push:
@@ -26,16 +26,56 @@ jobs:
         run: chmod +x copy-dist.sh
 
       - name: Docker Build
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        run: docker build -t "${DOCKER_USER}"/angular-template .
+        run: docker build -t "${{ secrets.DOCKER_USER }}"/angular-template .
 
       - name: Docker Push
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')
-          echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USER}" --password-stdin
-          docker tag "${DOCKER_USER}"/angular-template "${DOCKER_USER}"/angular-template:"${BRANCH_NAME}"
-          docker push "${DOCKER_USER}"/angular-template:"${BRANCH_NAME}"
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+          docker tag "${{ secrets.DOCKER_USER }}"/angular-template "${{ secrets.DOCKER_USER }}"/angular-template:"${BRANCH_NAME}"
+          docker push "${{ secrets.DOCKER_USER }}"/angular-template:"${{ secrets.DOCKER_PASSWORD }}"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+
+      - name: Pull and Run Docker Image
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
+            docker pull "${{ secrets.DOCKER_USER }}/angular-template:develop"
+            docker run -d --name my-angular-app-container "${{ secrets.DOCKER_USER }}/angular-template:develop"
+          elif [ "${{ github.ref }}" = "refs/heads/qc" ]; then
+            docker pull "${{ secrets.DOCKER_USER }}/angular-template:qc"
+            docker run -d --name my-angular-app-container "${{ secrets.DOCKER_USER }}/angular-template:qc"
+          elif [ "${{ github.ref }}" = "refs/heads/uat" ]; then
+            docker pull "${{ secrets.DOCKER_USER }}/angular-template:uat"
+            docker run -d --name my-angular-app-container "${{ secrets.DOCKER_USER }}/angular-template:uat"
+          elif [ "${{ github.ref }}" = "refs/heads/prod" ]; then
+            docker pull "${{ secrets.DOCKER_USER }}/angular-template:prod"
+            docker run -d --name my-angular-app-container "${{ secrets.DOCKER_USER }}/angular-template:prod"
+          fi
+
+      - name: Export Build Artifacts
+        run: docker cp my-angular-app-container:/usr/share/nginx/html ./dist
+
+      - name: Install Vercel CLI
+        run: yarn global add vercel
+
+      - name: Deploy to Vercel
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -n develop
+          elif [ "${{ github.ref }}" = "refs/heads/qc" ]; then
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -n qc
+          elif [ "${{ github.ref }}" = "refs/heads/uat" ]; then
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -n uat
+          elif [ "${{ github.ref }}" = "refs/heads/prod" ]; then
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -n prod
+          fi
