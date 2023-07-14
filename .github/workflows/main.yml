@@ -71,11 +71,11 @@ jobs:
       - name: Deploy to Vercel
         run: |
           if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -n develop
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --project develop
           elif [ "${{ github.ref }}" = "refs/heads/qc" ]; then
-            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -n qc
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --project qc
           elif [ "${{ github.ref }}" = "refs/heads/uat" ]; then
-            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -n uat
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --project uat
           elif [ "${{ github.ref }}" = "refs/heads/prod" ]; then
-            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -n prod
+            vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --project prod
           fi
