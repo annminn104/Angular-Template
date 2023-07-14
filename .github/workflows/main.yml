@@ -23,7 +23,7 @@ jobs:
         run: yarn run build
 
       - name: Docker Build
-        run: docker build -t my-angular-app .
+        run: docker build -t angular-template .
 
       - name: Docker Push
         env:
@@ -32,4 +32,4 @@ jobs:
           DOCKER_HUB_URL: ${{ secrets.DOCKER_HUB_URL}}
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USER --password-stdin
-          docker push $DOCKER_HUB_URL/my-angular-app
+          docker push $DOCKER_HUB_URL/angular-template
