@@ -6,5 +6,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4200:80
-    volumes:
-      - ./dist:/usr/share/nginx/html

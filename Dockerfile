@@ -19,7 +19,16 @@ FROM nginx:1.21-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy from `builder` (old image) build to nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /app/dist
+
+# Copy the script
+COPY copy-dist.sh /app/copy-dist.sh
+
+# Run the script
+RUN /app/copy-dist.sh
+
+# Run the script
+RUN /app/copy-dist.sh
 
 # Copy nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.conf
