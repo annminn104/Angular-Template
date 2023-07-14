@@ -32,5 +32,7 @@ jobs:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
+          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')
           echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USER}" --password-stdin
-          docker push "${DOCKER_USER}"/angular-template
+          docker tag "${DOCKER_USER}"/angular-template "${DOCKER_USER}"/angular-template:"${BRANCH_NAME}"
+          docker push "${DOCKER_USER}"/angular-template:"${BRANCH_NAME}"
