@@ -34,17 +34,3 @@ jobs:
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
           docker tag "${{ secrets.DOCKER_USER }}"/angular-template "${{ secrets.DOCKER_USER }}"/angular-template:"${BRANCH_NAME}"
           docker push "${{ secrets.DOCKER_USER }}"/angular-template:"${BRANCH_NAME}"
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
-
-      - name: Deploy
-        run: |
-          ssh user@your-server-address 'docker pull "${{ secrets.DOCKER_USER }}"/angular-template:"${GITHUB_REF#refs/heads/}" && docker-compose up -d'
