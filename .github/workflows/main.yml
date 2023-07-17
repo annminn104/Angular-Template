@@ -1,4 +1,4 @@
-name: Angular CI
+name: Angular CI/CD
 
 on:
   push:
@@ -26,16 +26,11 @@ jobs:
         run: chmod +x copy-dist.sh
 
       - name: Docker Build
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        run: docker build -t "${DOCKER_USER}"/angular-template .
+        run: docker build -t "${{ secrets.DOCKER_USER }}"/angular-template .
 
       - name: Docker Push
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')
-          echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USER}" --password-stdin
-          docker tag "${DOCKER_USER}"/angular-template "${DOCKER_USER}"/angular-template:"${BRANCH_NAME}"
-          docker push "${DOCKER_USER}"/angular-template:"${BRANCH_NAME}"
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+          docker tag "${{ secrets.DOCKER_USER }}"/angular-template "${{ secrets.DOCKER_USER }}"/angular-template:"${BRANCH_NAME}"
+          docker push "${{ secrets.DOCKER_USER }}"/angular-template:"${BRANCH_NAME}"
