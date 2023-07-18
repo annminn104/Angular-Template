@@ -1,26 +1,41 @@
-$wsl2_ip = wsl hostname -I | % { $_.Trim() }
-$windows_ip = (Test-Connection -ComputerName (hostname) -Count 1).IPV4Address.IPAddressToString
-$port = 8080
-New-NetFirewallRule -DisplayName "WSL2 Web Server (Port 8080)" -Direction Inbound  -LocalPort $port -Action Allow -Protocol TCP
-netsh interface portproxy add v4tov4 listenport=$port listenaddress=$windows_ip connectport=80 connectaddress=$wsl2_ip
+**Task card**
 
+**Description**
+[Provide a brief description of the changes introduced by this pull request.]
 
-#windows:
-netsh interface portproxy show all
+**Related Issue**
+[If your changes are related to a specific issue, mention it here with a link.]
 
-#wsl:
-ip addr show eth0
+**Type of Change**
+Please mark the appropriate option:
 
-sudo ss -tuln
+- [ ] Bug fix (non-breaking change that solves an issue)
+- [ ] New feature (non-breaking change that adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to change)
+- [ ] Documentation update
+- [ ] Other (please describe):
 
-ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+**Checklist**
+Please mark the appropriate options:
 
-sudo nano /etc/ssh/sshd_config
+- [x] I have performed a self-review of my own code.
+- [x] I have made corresponding changes to the documentation (if applicable).
+- [x] My changes generate no new warnings or errors.
+- [x] I have tested my changes and they pass all relevant tests.
+- [x] I have checked the formatting and code style of my changes.
+- [x] I have added necessary comments to the code for better understanding (if applicable).
 
-PermitRootLogin no
-PasswordAuthentication yes
-AllowUsers username
-ListenAddress 0.0.0.0
+**Changes Made**
+List down the key changes made in this pull request:
 
-#Windows bride to WSL
-netsh interface portproxy add v4tov4 listenaddress=<ip_windows> listenport=2222 connectaddress=<ip_wsl> connectport=22
+- Change 1
+- Change 2
+
+**How to Test**
+Provide clear instructions on how to test the changes made in this pull request. Include any necessary setup, configuration, or sample data.
+
+**Screenshots (if applicable)**
+If there are any UI changes, attach relevant screenshots or GIFs here to visually demonstrate the changes.
+
+**Additional Notes (if any)**
+If there are any additional notes or comments that you would like to add, mention them here.
