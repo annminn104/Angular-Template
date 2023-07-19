@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   api: {
-    host: '',
+    host: 'http://34.87.21.64:3000',
     prefix: '',
     version: '',
   },

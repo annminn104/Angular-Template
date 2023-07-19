@@ -1,4 +1,6 @@
 **Task card**
+Jira-123: Implement authentication service
+[Please note that you would replace "Jira-123: Implement authentication service" with the actual task ID and the name of the task from your project management system.]
 
 **Description**
 [Provide a brief description of the changes introduced by this pull request.]
@@ -10,9 +12,12 @@
 Please mark the appropriate option:
 
 - [ ] Bug fix (non-breaking change that solves an issue)
-- [ ] New feature (non-breaking change that adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to change)
+- [ ] User interface and design changes (modifications to the layout, pages, styles, colors, fonts, or UX flow)
+- [ ] API integration
 - [ ] Documentation update
+- [ ] New Angular Module creation
+- [ ] Changes to existing Angular Module
+- [ ] Changes to Core Module
 - [ ] Other (please describe):
 
 **Checklist**
@@ -24,6 +29,9 @@ Please mark the appropriate options:
 - [x] I have tested my changes and they pass all relevant tests.
 - [x] I have checked the formatting and code style of my changes.
 - [x] I have added necessary comments to the code for better understanding (if applicable).
+- [x] I have ensured my changes are compatible with mobile view (if applicable).
+- [x] I have considered impact on performance (if applicable).
+- [x] I have correctly implemented module design principles (if applicable).
 
 **Changes Made**
 List down the key changes made in this pull request:

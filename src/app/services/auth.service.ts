@@ -50,7 +50,7 @@ export class AuthService implements IWithAuth {
       map((data: any) => {
         const tokenData = {
           accessToken: data?.accessToken,
-          accessTokenExpired: data?.accessTokenExpired,
+          accessExpire: data?.accessExpire,
           refreshToken: data?.refreshToken,
         };
         this._jwt.setJwtData(tokenData);
@@ -60,16 +60,19 @@ export class AuthService implements IWithAuth {
   }
 
   login(data: ILoginRequest): Observable<ILoginResponse> {
-    return this._api.post<ILoginResponse>(AUTH_ENDPOINT.LOGIN, data).pipe(
-      map((data: any) => {
+    console.log(data);
+    return this._api.post<IHttpResponse<ILoginResponse>>(AUTH_ENDPOINT.LOGIN, data).pipe(
+      map((res: any) => {
+        console.log(res);
         const tokenData = {
-          accessToken: data?.accessToken,
-          accessTokenExpired: data?.accessTokenExpired,
-          refreshToken: data?.refreshToken,
+          accessToken: res?.accessToken,
+          accessExpire: res?.accessExpire,
+          refreshToken: res?.refreshToken,
+          refreshExpire: res?.refreshExpire,
         };
         this._jwt.setJwtData(tokenData);
         this.onLogin.next(true);
-        return data;
+        return res;
       }),
       catchError((error) => throwError(() => error))
     );

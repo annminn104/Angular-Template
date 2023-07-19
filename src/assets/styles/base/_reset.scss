@@ -107,8 +107,10 @@ section {
   display: block;
 }
 
+html,
 body {
-  line-height: 1;
+  line-height: 1.5;
+  font-size: rem(16);
 }
 
 ol,

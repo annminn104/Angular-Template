@@ -1,6 +1,6 @@
 export interface IHttpResponse<T> {
-  statusCode: number;
+  statusCode: number | null;
   data: T;
-  errors: string | Array<string>;
-  message: string;
+  errors: string | Array<string> | null;
+  message: string | null;
 }

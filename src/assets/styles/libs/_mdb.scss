@@ -1,0 +1,7 @@
+@import "mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+.error-message,
+.success-message {
+  top: rem(36);
+  @include font-base(14, 20);
+}

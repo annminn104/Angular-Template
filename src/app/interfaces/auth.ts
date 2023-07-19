@@ -1,5 +1,5 @@
 export interface ILoginRequest {
-  email: string;
+  username: string;
   password: string;
   remember: boolean;
 }
@@ -15,8 +15,9 @@ export interface ILoginUserResponse {
 
 export interface ITokenResponse {
   accessToken: string;
-  accessTokenExpired: string;
+  accessExpire: string;
   refreshToken: string;
+  refreshExpire: string
 }
 
 export interface IRegisterRequest {

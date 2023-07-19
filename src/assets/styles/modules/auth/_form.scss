@@ -1,0 +1,14 @@
+.auth {
+  &-form {
+    @include adjust-flex(center, center);
+    flex-direction: column;
+    background-color: $white-smoke;
+    width: rem(360);
+    padding: rem(24);
+    border-radius: rem(8);
+    box-shadow: $shadow-md;
+    form {
+      width: 100%;
+    }
+  }
+}

@@ -31,7 +31,7 @@ const CoreModuleConfig: ICoreModuleConfig = {
       retry: 0,
     },
     dataInterceptor: {
-      enable: true,
+      enable: false,
       excludeUrls: [],
     },
   },
