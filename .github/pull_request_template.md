@@ -1,5 +1,5 @@
-**Task card**
-Jira-123: Implement authentication service
+**Task Card**
+[Jira-123: Implement authentication service]
 [Please note that you would replace "Jira-123: Implement authentication service" with the actual task ID and the name of the task from your project management system.]
 
 **Description**
