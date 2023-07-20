@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormGroupWith, WithForm } from '@core/interfaces/components';
-import { AUTH_VALID } from '@enums/auth';
 import { ILoginRequest } from '@interfaces/auth';
 import { AuthService } from '@services/auth.service';
+import { AUTH_VALID } from '@shared/mocks/validation';
 import FormUtils from '@shared/utils/form';
 
 @Component({
@@ -15,7 +15,7 @@ import FormUtils from '@shared/utils/form';
 export class LoginForm implements OnInit, WithForm<ILoginRequest> {
   formGroup!: FormGroupWith<ILoginRequest>;
   isRequesting: boolean = false;
-  isValid = AUTH_VALID;
+  public isValid = AUTH_VALID;
 
   get form() {
     return this.formGroup.controls;

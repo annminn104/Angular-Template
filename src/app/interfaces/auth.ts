@@ -17,7 +17,7 @@ export interface ITokenResponse {
   accessToken: string;
   accessExpire: string;
   refreshToken: string;
-  refreshExpire: string
+  refreshExpire: string;
 }
 
 export interface IRegisterRequest {

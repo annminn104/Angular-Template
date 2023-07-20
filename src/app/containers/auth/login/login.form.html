@@ -6,17 +6,17 @@
       <input mdbValidate mdbInput type="text" formControlName="username" id="form2Example1" class="form-control" />
       <label mdbLabel class="form-label" for="form2Example1">Email address</label>
       <mdb-error *ngIf="form.username.invalid && (form.username.dirty || form.username.touched)">
-        <span *ngIf="form.username.errors?.['required']">{{isValid.EMAIL_REQUIRED}}</span>
-        <span *ngIf="form.username.errors?.['maxlength']">{{isValid.EMAIL_MAX_LENGTH}}</span>
+        <span *ngIf="form.username.errors?.['required']">{{ isValid['USERNAME_REQUIRED'] }}</span>
+        <span *ngIf="form.username.errors?.['maxlength']">{{ isValid['USERNAME_MAX_LENGTH'] }}</span>
       </mdb-error>
     </mdb-form-control>
     <mdb-form-control class="mb-4">
       <input mdbValidate mdbInput type="password" formControlName="password" id="form2Example2" class="form-control" />
       <label mdbLabel class="form-label" for="form2Example2">Password</label>
       <mdb-error *ngIf="form.password.invalid && (form.password.dirty || form.password.touched)">
-        <span *ngIf="form.password.errors?.['required']">{{isValid.PASSWORD_REQUIRED}}</span>
-        <span *ngIf="form.password.errors?.['minlength']">{{isValid.PASSWORD_MIN_LENGTH}}</span>
-        <span *ngIf="form.password.errors?.['maxlength']">{{isValid.PASSWORD_MAX_LENGTH}}</span>
+        <span *ngIf="form.password.errors?.['required']">{{ isValid['PASSWORD_REQUIRED'] }}</span>
+        <span *ngIf="form.password.errors?.['minlength']">{{ isValid['PASSWORD_MIN_LENGTH'] }}</span>
+        <span *ngIf="form.password.errors?.['maxlength']">{{ isValid['PASSWORD_MAX_LENGTH'] }}</span>
       </mdb-error>
     </mdb-form-control>
     <div class="row mb-4">
