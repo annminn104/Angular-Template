@@ -7,5 +7,6 @@ export interface IJwtConfig {
 export interface IJwtAccessToken {
   accessToken: string;
   refreshToken?: string;
-  accessTokenExpired?: number | string | null;
+  accessExpire?: number | string | null;
+  refreshExpire?: number | string | null;
 }

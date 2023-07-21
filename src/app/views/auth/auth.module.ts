@@ -6,9 +6,10 @@ import { LoginPage } from './pages/login/login.page';
 import { RegisterPage } from './pages/register/register.page';
 import { ForgotPasswordPage } from './pages/forgot-password/forgot-password.page';
 import { VerifyEmailPage } from './pages/verify-email/verify-email.page';
+import { AuthContainerModule } from '@containers/auth/auth.module';
 
 @NgModule({
   declarations: [LoginPage, RegisterPage, ForgotPasswordPage, VerifyEmailPage],
-  imports: [CommonModule, AuthRoutingModule],
+  imports: [CommonModule, AuthRoutingModule, AuthContainerModule],
 })
 export class AuthModule {}

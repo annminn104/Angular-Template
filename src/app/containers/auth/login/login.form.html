@@ -1,1 +1,51 @@
-<p>login works!</p>
+<div class="auth-form">
+  <h1 class="auth-form-title">Login Form</h1>
+  <h3 class="auth-form-subTitle">.....</h3>
+  <form [formGroup]="formGroup" (submit)="onSubmit()" class="mt-4">
+    <mdb-form-control class="mb-4">
+      <input mdbValidate mdbInput type="text" formControlName="username" id="form2Example1" class="form-control" />
+      <label mdbLabel class="form-label" for="form2Example1">Email address</label>
+      <mdb-error *ngIf="form.username.invalid && (form.username.dirty || form.username.touched)">
+        <span *ngIf="form.username.errors?.['required']">{{ isValid['USERNAME_REQUIRED'] }}</span>
+        <span *ngIf="form.username.errors?.['maxlength']">{{ isValid['USERNAME_MAX_LENGTH'] }}</span>
+      </mdb-error>
+    </mdb-form-control>
+    <mdb-form-control class="mb-4">
+      <input mdbValidate mdbInput type="password" formControlName="password" id="form2Example2" class="form-control" />
+      <label mdbLabel class="form-label" for="form2Example2">Password</label>
+      <mdb-error *ngIf="form.password.invalid && (form.password.dirty || form.password.touched)">
+        <span *ngIf="form.password.errors?.['required']">{{ isValid['PASSWORD_REQUIRED'] }}</span>
+        <span *ngIf="form.password.errors?.['minlength']">{{ isValid['PASSWORD_MIN_LENGTH'] }}</span>
+        <span *ngIf="form.password.errors?.['maxlength']">{{ isValid['PASSWORD_MAX_LENGTH'] }}</span>
+      </mdb-error>
+    </mdb-form-control>
+    <div class="row mb-4">
+      <div class="col d-flex justify-content-center align-items-center">
+        <div>
+          <input mdbCheckbox formControlName="remember" class="form-check-input" type="checkbox" value="" id="form2Example31" [checked]="true" />
+          <label class="form-check-label" for="form2Example31">Remember me</label>
+        </div>
+      </div>
+      <div class="col">
+        <a href="#!">Forgot password?</a>
+      </div>
+    </div>
+    <button mdbRipple type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+    <div class="text-center">
+      <p>Not a member? <a href="#!">Register</a></p>
+      <p>or sign up with:</p>
+      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-google"></i>
+      </button>
+      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-twitter"></i>
+      </button>
+      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+        <i class="fab fa-github"></i>
+      </button>
+    </div>
+  </form>
+</div>

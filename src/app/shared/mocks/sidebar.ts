@@ -7,14 +7,6 @@ interface SidebarMenuItem {
 }
 
 export const SIDEBAR_MENU_MOCKS: Array<SidebarMenuItem> = [
-  {
-    title: 'Dashboard',
-    icon: 'ICON_DASHBOARD',
-    slug: '',
-  },
-  {
-    title: 'Profile',
-    icon: 'ICON_USER',
-    slug: 'profile',
-  },
+  { title: 'Dashboard', icon: 'ICON_DASHBOARD', slug: '' },
+  { title: 'Profile', icon: 'ICON_USER', slug: 'profile' },
 ];

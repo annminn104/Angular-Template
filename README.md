@@ -49,22 +49,87 @@ By default, this will start the server on port 8080. You can then navigate to `h
 
 This application follows a particular structure:
 
-- `src/app`: Contains the main app module and components
-  - `containers/`: Contains the components that make up your application's screens, pages, dialogs
-  - `core/`: Contains core features that are used throughout the application, including:
-    - `enums`: Place to define enumerations
-    - `interfaces`: Place to define typescript interfaces
-    - `layouts`: Contains the layouts used for the modules
-    - `models`: Place to define application models
-    - `services`: Contains services to handle API communication and business logic
-  - `shared/`: Contains the modules (like utils, modules, mocks data, pipes) which are used throughout the application
-  - `views/`: Contains pages as per modules
-- `src/assets`: Contains all static assets
-  - `fonts/`: Contains font files
-  - `icons/`: Contains icon files
-  - `images/`: Contains image files
-  - `styles/`: Contains global scss stylesheets
-- `src/environments`: Contains files for different environment variables.
+```shell
+.
+├── src/                                               # Source files (alternatively `lib` or `app`)
+│   ├── app/                                           # Main app module and components
+│   │   ├── containers/                                # Components that make up your application's screens, pages, dialogs, forms
+│   │   │   └── module-name/                           # Specific module in the containers
+│   │   │       ├── component-name/                    # Specific feature or type within the module
+│   │   │       │   ├── component-name.type.html       # HTML template for the type-specific feature
+│   │   │       │   ├── component-name.type.scss       # SCSS styles for the type-specific feature
+│   │   │       │   └── component-name.type.ts         # Angular component for the type-specific feature
+│   │   │       └── module-name.module.ts              # Module declaration file
+│   │   ├── core/                                      # Core features used throughout the application
+│   │   │   ├── enums/                                 # Enumerations
+│   │   │   │   └── name.enum.ts                       # Enumeration files
+│   │   │   ├── guards/                                # Route guards (services that control navigation access)
+│   │   │   │   ├── auth.guard.ts                      # Guard to prevent unauthenticated users
+│   │   │   │   └── non-auth.guard.ts                  # Guard to prevent authenticated users
+│   │   │   ├── interfaces/                            # TypeScript interfaces
+│   │   │   │   └── interface-name.ts                  # Interface declaration files
+│   │   │   ├── interceptors/                          # Interceptors
+│   │   │   │   ├── api.interceptor.ts                 # Interceptor for handling API interactions
+│   │   │   │   ├── auth.interceptor.ts                # Interceptor for handling authentication
+│   │   │   │   ├── data.interceptor.ts                # Interceptor for handling data processing
+│   │   │   │   ├── error.interceptor.ts               # Interceptor for handling HTTP errors
+│   │   │   │   └── refresh-token.interceptor.ts       # Interceptor for refreshing tokens
+│   │   │   ├── models/                                # Application models
+│   │   │   │   └── model-name.ts                      # Model declaration files
+│   │   │   ├── services/                              # Services for API communication and business logic
+│   │   │   │   ├── api.service.ts                     # Service for making API calls
+│   │   │   │   ├── jwt.service.ts                     # Service for handling JWTs
+│   │   │   │   └── logging.service.ts                 # Service for application logging
+│   │   │   └── tokens/                                # Tokens for user authentication handling
+│   │   │       ├── api.ts                             # API configuration token
+│   │   │       ├── interceptor.ts                     # Interceptor configuration token
+│   │   │       ├── logging.ts                         # Logging service configuration token
+│   │   │       └── jwt.ts                             # JWT configuration token
+│   │   ├── enums/                                     # Enums used in the app module
+│   │   │   └── enums-name.ts                          # Enumeration files for the app module
+│   │   ├── interfaces/                                # Interfaces used in the app module
+│   │   │   └── interface-name.ts                      # Interface declaration files for the app module
+│   │   ├── layouts/                                   # Layouts used in the app module
+│   │   │   └── name-layout/                           # A specific layout
+│   │   │       ├── components/                        # Components specific to this layout
+│   │   │       ├── name-layout-routing.module.ts      # Routing module for the layout
+│   │   │       ├── name-layout.component.html         # HTML template for the layout
+│   │   │       ├── name-layout.component.scss         # SCSS styles for the layout
+│   │   │       ├── name-layout.component.ts           # Angular component for the layout
+│   │   │       └── name-layout.module.ts              # Angular module for the layout
+│   │   ├── models/                                    # Models specific to the app module
+│   │   │   └── model-name.ts                          # Model declaration files for the app module
+│   │   ├── services/                                  # Services specific to the app module
+│   │   │   └── module-name.service.ts                 # Service files for the app module
+│   │   ├── shared/                                    # Shared utilities, modules, data, pipes
+│   │   │   ├── mocks/                                 # Mock data files
+│   │   │   ├── modules/                               # Shared modules (e.g., icons, toasts, common components)
+│   │   │   ├── pipes/                                 # Angular Pipes
+│   │   │   └── utils/                                 # Utility files (e.g., helper functions, small services, config files)
+│   │   ├── views/                                     # Pages as per modules
+│   │   │   ├── pages/                                 # Page components grouped by modules
+│   │   │   ├── name-routing.module.ts                 # Routing definitions for 'name' module
+│   │   │   └── name.module.ts                         # Main module file for 'name' module
+│   │   ├── app-routing.module.ts                      # Main routing definitions for the app
+│   │   ├── app.component.html                         # Main HTML template for the app
+│   │   ├── app.component.scss                         # SCSS styles for the main app component
+│   │   ├── app.component.ts                           # TypeScript class for the main app component
+│   │   └── app.module.ts                              # Main module for the app
+│   ├── assets/                                        # All static assets
+│   │   ├── fonts/                                     # Font files
+│   │   ├── icons/                                     # Icon files
+│   │   ├── images/                                    # Image files
+│   │   └── styles/                                    # Global SCSS stylesheets
+│   │       ├── base/                                  # Base styles such as resets, typography, etc.
+│   │       ├── components/                            # Styles for specific components
+│   │       ├── layouts/                               # Styles for specific layouts
+│   │       ├── libs/                                  # Styles from external libraries or CSS plugins
+│   │       ├── modules/                               # Styles for specific modules
+│   │       ├── pages/                                 # Styles for specific pages
+│   │       ├── utilities/                             # Utility and helper styles, variables, mixins, etc.
+│   │       └── index.scss                             # Entry point file for SCSS, importing all other SCSS files
+│   └── environments/                                  # Files for different environment variables
+```
 
 ## Additional Documentation
 
@@ -75,7 +140,7 @@ You can refer to the following resources to better understand the libraries used
 - [Commitlint](https://commitlint.js.org/#/)
 - [AutoChangelog](https://github.com/CookPete/auto-changelog)
 - [Bootstrap](https://getbootstrap.com/docs/)
-- [ng-bootstrap](https://ng-bootstrap.github.io/#/home)
+- [Mdbootstrap](https://mdbootstrap.com/docs/angular/)
 
 ## CSS Standards (SCSS with ABEM)
 

@@ -40,22 +40,10 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        {
-          provide: API_CONFIG,
-          useValue: config.apiConfig || {},
-        },
-        {
-          provide: LOG_CONFIG,
-          useValue: config.logConfig || {},
-        },
-        {
-          provide: JWT_CONFIG,
-          useValue: config.jwtConfig || {},
-        },
-        {
-          provide: INTERCEPTOR_CONFIG,
-          useValue: config.interceptorConfig || {},
-        },
+        { provide: API_CONFIG, useValue: config.apiConfig || {} },
+        { provide: LOG_CONFIG, useValue: config.logConfig || {} },
+        { provide: JWT_CONFIG, useValue: config.jwtConfig || {} },
+        { provide: INTERCEPTOR_CONFIG, useValue: config.interceptorConfig || {} },
       ],
     };
   }

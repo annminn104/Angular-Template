@@ -1,0 +1,14 @@
+.auth-layout {
+  min-height: 100vh;
+  @include adjust-flex(center, center);
+  &-container {
+    max-width: 100%;
+    height: 100%;
+    @include adjust-flex(center, center);
+  }
+  &-image {
+  }
+  &-content {
+    @include adjust-flex(center, center);
+  }
+}

@@ -10,9 +10,9 @@ export class JwtService {
   constructor(@Inject(JWT_CONFIG) private jwtConfig: IJwtConfig) {}
 
   setJwtData(data: IJwtAccessToken): void {
-    this.saveAccessToken(data.accessToken);
+    this.saveAccessToken(data.accessToken, data.accessExpire);
     if (this.jwtConfig.refreshTokenKey && data.refreshToken) {
-      this.saveRefreshToken(data.refreshToken);
+      this.saveRefreshToken(data.refreshToken, data.refreshExpire);
     }
   }
 
@@ -36,9 +36,10 @@ export class JwtService {
     CookieUtils.Set(this.jwtConfig.accessTokenKey, token, expireDate);
   }
 
-  saveRefreshToken(refreshToken: string) {
+  saveRefreshToken(refreshToken: string, expire?: number | string | null) {
+    const expireDate = !expire ? null : typeof expire === 'string' ? new Date(expire) : new Date(expire * 1000);
     if (this.jwtConfig.refreshTokenKey) {
-      CookieUtils.Set(this.jwtConfig.refreshTokenKey, refreshToken);
+      CookieUtils.Set(this.jwtConfig.refreshTokenKey, refreshToken, expireDate);
     }
   }
 

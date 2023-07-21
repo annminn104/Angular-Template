@@ -3,7 +3,7 @@ export enum AUTH_ENDPOINT {
   LOGOUT = 'auth/logout',
   REFRESH_TOKEN = 'auth/refresh-token',
   REGISTER = 'auth/register',
-  PROFILE = 'auth/profile',
+  PROFILE = 'auth/me',
   VERIFY_EMAIL = 'auth/verify-email',
   RESEND_EMAIL = 'auth/resend-code',
 }

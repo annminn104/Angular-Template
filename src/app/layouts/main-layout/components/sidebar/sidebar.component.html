@@ -1,17 +1,20 @@
-<p>sidebar works!</p>
 <div class="main-sideBar">
-  <div class="main-sideBar-content">
-    <div class="main-sidebar_logo">LOGO</div>
-    <div class="main-sideBar_menu">
-      <a href="{{ item.slug }}" *ngFor="let item of sideBarMenu" class="main-sideBar_item">
-        <app-icons [iconName]="item.icon" size="28x28" />
-        <span class="main-sideBar_item-title">{{ item.title }}</span>
+  <div class="row main-sideBar-content">
+    <div class="col-12 mb-4 main-sideBar-logo">
+      <img src="../../../../../assets/images/mdb-angular.webp" alt="logo" />
+    </div>
+    <div class="col-12 main-sideBar-menu">
+      <a href="{{ item.slug }}" *ngFor="let item of sideBarMenu" class="main-sideBar-menu_item">
+        <div class="main-sideBar-menu_item--icon">
+          <app-icons [iconName]="item.icon" size="28x28" />
+        </div>
+        <span class="main-sideBar-menu_item--title">{{ item.title }}</span>
       </a>
     </div>
-    <div class="main-sideBar-button">
-      <app-button type="button">
-        <app-icons iconName="ICON_ANGLE_DOUBLE_LEFT" />
-      </app-button>
+    <div class="col-12 main-sideBar-button">
+      <button type="button" class="btn btn-secondary w-100" mdbRipple>
+        <i class="fas fa-download"></i>
+      </button>
     </div>
   </div>
 </div>
