@@ -14,7 +14,7 @@
     "format": "prettier --write \"src/",
     "prepare": "husky install",
     "changelog": "auto-changelog --template keepachangelog --hide-credit --commit-limit false",
-    "changelog:commit": "npm run changelog && git add * && git commit --amend --no-edit"
+    "changelog:commit": "yarn run changelog && git add * && git commit --amend --no-edit"
   },
   "private": true,
   "dependencies": {
