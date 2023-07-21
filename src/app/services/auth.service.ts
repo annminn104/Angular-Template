@@ -60,17 +60,9 @@ export class AuthService implements IWithAuth {
   }
 
   login(data: ILoginRequest): Observable<ILoginResponse> {
-    console.log(data);
     return this._api.post<IHttpResponse<ILoginResponse>>(AUTH_ENDPOINT.LOGIN, data).pipe(
       map((res: any) => {
-        console.log(res);
-        const tokenData = {
-          accessToken: res?.accessToken,
-          accessExpire: res?.accessExpire,
-          refreshToken: res?.refreshToken,
-          refreshExpire: res?.refreshExpire,
-        };
-        this._jwt.setJwtData(tokenData);
+        this._jwt.setJwtData(res);
         this.onLogin.next(true);
         return res;
       }),

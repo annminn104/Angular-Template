@@ -1,14 +1,14 @@
 <div class="main-sideBar">
   <div class="row main-sideBar-content">
-    <div class="col-12 mb-2 main-sidebar-logo">
+    <div class="col-12 mb-4 main-sideBar-logo">
       <img src="../../../../../assets/images/mdb-angular.webp" alt="logo" />
     </div>
     <div class="col-12 main-sideBar-menu">
-      <a href="{{ item.slug }}" *ngFor="let item of sideBarMenu" class="main-sideBar_item">
-        <div class="main-sideBar_item-icon">
+      <a href="{{ item.slug }}" *ngFor="let item of sideBarMenu" class="main-sideBar-menu_item">
+        <div class="main-sideBar-menu_item--icon">
           <app-icons [iconName]="item.icon" size="28x28" />
         </div>
-        <span class="main-sideBar_item-title">{{ item.title }}</span>
+        <span class="main-sideBar-menu_item--title">{{ item.title }}</span>
       </a>
     </div>
     <div class="col-12 main-sideBar-button">

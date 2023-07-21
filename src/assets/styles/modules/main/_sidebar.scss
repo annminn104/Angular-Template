@@ -1,11 +1,29 @@
 .main-sideBar {
+  overflow: hidden;
   &-logo {
-    text-align: center;
+    @include adjust-flex(center, center);
   }
 
   &-menu {
     @include adjust-flex(flex-start, flex-start);
     flex-direction: column;
+    row-gap: rem(8);
+    &_item {
+      @include adjust-flex(flex-start, center);
+      background-color: $anti-flash-white;
+      width: 100%;
+      border-radius: rem(4);
+      &--icon {
+        @include adjust-flex(center, center);
+        -moz-column-gap: rem(8);
+        column-gap: rem(8);
+        padding: rem(8);
+      }
+      &--title {
+        @include font-base(20, 28);
+        color: $black;
+      }
+    }
   }
 
   &-button {
